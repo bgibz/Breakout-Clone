@@ -170,6 +170,20 @@
 		//collision detection with paddle
 		else if (y + dy > canvas.height - ballSize){
 			if (x > paddleX && x < (paddleX + paddleWidth)) {
+				//adjust ball speed depending on paddle contact point
+				if ((x < (paddleX + (paddleWidth/3))) || (x > (paddleX + (paddleWidth * (2/3))))) {
+					if (dx > 0 && dx < 4) {
+						dx++;
+					}
+					else if (dx < 0 && dx > -4) {
+						dx--;
+					}
+				}
+				else {
+					if (dy < 4) {
+						dy++;
+					}
+				}
 				dy = -dy;
 				//if paddle moving opposite direction of ball, send ball the other direction
 				if(rightPressed === true && dx < 0) {
